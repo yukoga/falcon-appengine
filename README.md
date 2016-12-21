@@ -31,7 +31,12 @@ $ source activate py35
 (py35)~/ % git clone https://github.com/yukoga/falcon-appengine.git
 (py35)~/ % cd falcone-appengine
 ```
-6. Local test.
+6. Resolve dependencies.
+```bash
+(py35)~/ % mkdir lib
+(py35)~/ % pip install -t lib -r requirements.txt
+```
+7. Local test.
 ```bash
 (py35)~/ % gunicorn -b :8080 main:api
 ```
