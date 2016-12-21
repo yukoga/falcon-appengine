@@ -40,4 +40,4 @@ $ source activate py35
 ```bash
 (py35)~/ % gunicorn -b :8080 main:api
 ```
-Then you'll see the sample html page at http://localhost:8080/things on your browser.
+Then you'll see the sample html page at [http://localhost:8080/things](http://localhost:8080/things) on your browser.
