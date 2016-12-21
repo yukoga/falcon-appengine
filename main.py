@@ -1,33 +1,34 @@
 __author__ = 'lorenzo'
 
-
 import sys
-sys.path.insert(0, 'lib')
+# sys.path.insert(0, 'lib')
 
-import lib.falcon as falcon
-
-from google.appengine.ext.webapp.util import run_wsgi_app
+import falcon
+import os.path as path
+from jinja2 import Environment, FileSystemLoader
 
 
 class ThingsResource(object):
     def on_get(self, req, resp):
         """Handles GET requests"""
+        tpl = load_template('things.html')
         resp.status = falcon.HTTP_200
-        resp.body = 'Hello world!'
+        resp.content_type = 'text_html'
+        resp.body = tpl.render({'message': 'Hello Falcon and Jinja2!! 日本語も'})
 
 
-# Resources are represented by long-lived class instances
 things = ThingsResource()
-
-# falcon.API instances are callable WSGI apps
-wsgi_app = api = falcon.API()
-
-# things will handle all requests to the '/things' URL path
+api = falcon.API()
 api.add_route('/things', things)
 
+def load_template(template_name):
+    ROOT = path.abspath(path.dirname(__file__))
+    TEMP_DIR = '/'.join((ROOT, 'templates'))
+    env = Environment(loader=FileSystemLoader(TEMP_DIR))
+    return env.get_template(template_name)
 
-def main():
-    run_wsgi_app(wsgi_app)
+#def main():
+#    pass
 
-if __name__ == '__main__':
-    main()
+#if __name__ == '__main__':
+#    main()

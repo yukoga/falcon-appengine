@@ -1,16 +1,7 @@
-application: falcon-appengine
-version: 0-1
-runtime: python27
-api_version: 1
-threadsafe: no
+runtime: python
+env: flex
+entrypoint: gunicorn -b :8080 main:api
 
-handlers:
-- url: /favicon\.ico
-  static_files: favicon.ico
-  upload: favicon\.ico
+runtime_config:
+  python_version: 3
 
-- url: .*
-  script: main.py
-
-builtins:
-- remote_api: on
