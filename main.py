@@ -1,7 +1,4 @@
-__author__ = 'lorenzo'
-
-import sys
-# sys.path.insert(0, 'lib')
+__author__ = 'lorenzo (modified by yukoga)'
 
 import falcon
 import os.path as path
@@ -27,8 +24,3 @@ def load_template(template_name):
     env = Environment(loader=FileSystemLoader(TEMP_DIR))
     return env.get_template(template_name)
 
-#def main():
-#    pass
-
-#if __name__ == '__main__':
-#    main()
